@@ -7,13 +7,7 @@ body {
   
   .landing-page {
     text-align: center;
-    padding: 2rem;
-  }
-  
-  .hero-banner {
-    background: #fff;
-    padding: 2rem 1rem;
-    margin-bottom: 2rem;
+    padding: 1rem;
   }
   
   .hero-banner h1 {
@@ -43,19 +37,27 @@ body {
   
   .features {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin: 2rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2.5rem;
+    margin: 2rem 0.5rem;
+    cursor: pointer;
   }
   
   .feature-card {
-    background: #fff;
     border: 1px solid #ddd;
     border-radius: 5px;
-    padding: 1.5rem;
+    padding: 2.5rem;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
-  
+  .feature-card:nth-child(1){
+    background: rgba(225, 175, 234, 0.603);
+  }
+  .feature-card:nth-child(2){
+    background:#9fd6f491;
+  }
+  .feature-card:nth-child(3){
+    background: rgba(230, 169, 26, 0.555);
+  }
   .feature-card h3 {
     margin-bottom: 1rem;
   }
@@ -63,18 +65,16 @@ body {
   .hero-banner {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 20px;
+    justify-content: space-around;
   }
   
   .hero-content {
     flex: 1;
-    max-width: 600px;
+    max-width: 700px;
   }
   
   .hero-image img {
-    max-width: 70%;
-    height: auto;
-    border-radius: 10px;
+    max-width: 100vw;
+    height: 90vh;
   }
   

@@ -15,7 +15,7 @@ const LandingPage = () => {
           </button>
         </div>
         <div className="hero-image">
-        <img src="/heroImage.jpg" alt="Family with child drawing" />
+        <img src="/hero.jpg" alt="Family with child drawing" />
 
         </div>
       </section>
