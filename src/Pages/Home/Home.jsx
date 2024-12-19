@@ -1,7 +1,7 @@
 import React from "react";
 import './LandingPage.css';
 
-const LandingPage = () => {
+const Home = () => {
   return (
     <div className="landing-page">
       <section className="hero-banner">
@@ -38,4 +38,4 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
+export default Home;
