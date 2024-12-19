@@ -1,9 +1,9 @@
 import React from "react";
-import './LandingPage.css';
+import './Home.css';
 
 const Home = () => {
   return (
-    <div className="landing-page">
+    <div className="home-page">
       <section className="hero-banner">
         <div className="hero-content">
           <h1>Discover Your Child’s Inner World Through Their Drawings</h1>
@@ -13,10 +13,6 @@ const Home = () => {
           <button className="cta-button" onClick={() => window.location.href = "/signup"}>
             Get Started
           </button>
-        </div>
-        <div className="hero-image">
-        <img src="/hero.jpg" alt="Family with child drawing" />
-
         </div>
       </section>
       <section className="features">
