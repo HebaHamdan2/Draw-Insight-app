@@ -1,29 +1,16 @@
-body {
-    margin: 0;
-    padding: 0;
+
+  .signup {
+    width: 100%; 
     background: linear-gradient(120deg, #89c7b8, #c3e1db);
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-  
-section {
-    width: 100%; 
-    max-width: 600px; 
-    height: auto; 
-    padding: 2.5rem;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 15px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
 }
   
 form {
@@ -31,18 +18,44 @@ form {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    max-width: 600px; 
+    background-color: #fff;
+    height: auto; 
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
   
 .profile-pic {
     display: block;
-    width: 120px;
-    height: 120px;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
     margin: 0 auto 1.5rem; 
     object-fit: cover;
-    border: 3px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
 }
+.already-account {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 0.5rem;
+  }
+  
+  .already-account a {
+    color: #89c7b8;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  .already-account a:hover {
+    color: #6cbeb4;
+  }
+  
   
 label {
     font-weight: 600;
@@ -70,13 +83,13 @@ input:focus {
     box-shadow: 0 0 5px rgba(137, 199, 184, 0.8);
 }
   
-button {
+.SignUpBtn {
     padding: 0.8rem 1.5rem;
     color: #fff;
-    background: linear-gradient(120deg, #89c7b8, #6cbeb4);
+    background: linear-gradient(120deg, #89c7b8, #9ff4dd);
     border: none;
-    width: 60%;
-    margin: 1.5rem auto 0;
+    width: 50%;
+    margin: 0.5rem auto 0;
     border-radius: 30px;
     font-size: 1rem;
     font-weight: 600;

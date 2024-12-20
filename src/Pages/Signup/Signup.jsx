@@ -2,9 +2,9 @@ import React from 'react'
 import './Signup.css'
 const Signup = () => {
   return (
-   <section>
+   <section className="signup">
  <form action="">
-  <img src="./null.jpg" alt="profile-pic" className="profile-pic" />
+  <img src="./null.png" alt="profile-pic" className="profile-pic" />
   <div>
     <label htmlFor="username">Name</label>
     <input
@@ -50,7 +50,10 @@ const Signup = () => {
       id="cPassword"
     />
   </div>
-  <button type="submit">Sign Up</button>
+  <p className="already-account">
+          Already have an account? <a href="/login">Log In</a>
+        </p>
+  <button type="submit" className='SignUpBtn'> Sign Up</button>
 </form>
 
    </section>
