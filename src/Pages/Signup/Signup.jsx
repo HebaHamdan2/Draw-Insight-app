@@ -2,7 +2,7 @@ import React from 'react'
 import './Signup.css'
 const Signup = () => {
   return (
-   <section className="signup">
+   <div className="signup">
  <form action="">
   <img src="./null.png" alt="profile-pic" className="profile-pic" />
   <div>
@@ -56,7 +56,7 @@ const Signup = () => {
   <button type="submit" className='SignUpBtn'> Sign Up</button>
 </form>
 
-   </section>
+   </div>
   )
 }
 

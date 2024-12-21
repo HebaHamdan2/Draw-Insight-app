@@ -1,7 +1,6 @@
 
-  .signup {
+.addChild {
     width: 100%; 
-    background: linear-gradient(120deg, #89c7b8, #c3e1db);
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -39,25 +38,7 @@ form {
     object-fit: cover;
     cursor: pointer;
 }
-.already-account {
-    text-align: center;
-    font-size: 0.9rem;
-    color: #555;
-    margin-top: 0.5rem;
-  }
-  
-  .already-account a {
-    color: #89c7b8;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
-  }
-  
-  .already-account a:hover {
-    color: #6cbeb4;
-  }
-  
-  
+ 
 label {
     font-weight: 600;
     margin-bottom: 0.5rem;
@@ -84,7 +65,7 @@ input:focus {
     box-shadow: 0 0 5px rgba(137, 199, 184, 0.8);
 }
   
-.SignUpBtn {
+.AddChildBtn {
     padding: 0.8rem 1.5rem;
     color: #fff;
     background: linear-gradient(120deg, #89c7b8, #9ff4dd);
@@ -99,6 +80,7 @@ input:focus {
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
   
 button:hover {
     transform: scale(1.05);

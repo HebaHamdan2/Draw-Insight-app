@@ -1,13 +1,8 @@
-body {
-    margin: 0;
-    font-family: "Baloo Chettan", cursive;
-    line-height: 1.6;
-    color: #333;
-  }
-  
+
   .home-page {
     text-align: center;
     padding: 3rem;
+    font-family: "Baloo Chettan", cursive;
   }
   
   .hero-banner h1 {
@@ -55,8 +50,8 @@ body {
   }
   
   .cta-button {
-    background: #9ff4dd;
-    color: white;
+    background: #ffd7cd;
+    color: #ec6830;
     border: none;
     padding: 1rem 2rem;
     font-size: 1rem;
