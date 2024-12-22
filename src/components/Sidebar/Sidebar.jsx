@@ -31,7 +31,7 @@ const Sidebar = ({onMenuClick}) => {
             <img src="../null.jpg" alt="profile" width={30} height={30} className="rounded-circle" />
             <span className="d-none d-sm-inline mx-1">username</span>
           </Link>
-          <ul className="dropdown-menu dropdown-menu-dark text-small shadow">
+          <ul className="dropdown-menu dropdown-menu-light text-small shadow">
             <li><Link className="dropdown-item" href="#">Account Settings</Link></li>
             <li><Link className="dropdown-item" href="#">View Profile</Link></li>
             <li>
