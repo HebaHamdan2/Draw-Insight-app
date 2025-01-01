@@ -1,13 +1,12 @@
 import './App.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import LandingPage from './Pages/Home/Home.jsx';
 import Signup from './Pages/Signup/Signup.jsx';
 import Login from './Pages/Login/Login.jsx';
-import Dashboard from './Pages/Dashboard/Dashboard.jsx';
+import Dashboard from './Pages/Home/Home.jsx';
 
 function App() {
   let routers=createBrowserRouter([
-    {path:'',element:<LandingPage/>},
+    {path:'',element:<Signup/>},
     {path:'/signup',element:<Signup/>},
     {path:'/login',element:<Login/>},
     {path:'/dashboard',element:<Dashboard/>}
