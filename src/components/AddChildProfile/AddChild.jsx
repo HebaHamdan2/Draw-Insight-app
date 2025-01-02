@@ -1,5 +1,4 @@
 import React from 'react'
-import './AddChild.css'
 const AddChild = () => {
   return (
     <div className="addChild">

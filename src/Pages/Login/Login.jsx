@@ -1,42 +1,39 @@
 import React from 'react'
-import './Login.css'
 const Login = () => {
   return (
-   <section className="Login">
- <form action="">
-  <div>
-    <label htmlFor="username">Name</label>
-    <input
-      type="text"
-      name="username"
-      placeholder="Enter your name here!"
-      id="username"
-    />
-  </div>
-  <div>
-    <label htmlFor="email">Email</label>
+   <section className="bg-mainBg py-[4%] ">
+ <form className='wrapper flex flex-col justify-center items-center gap-6' >
+  <div className='flex flex-col gap-2 w-full'>
+    <label htmlFor="email" className='text-mainText font-medium text-base'>Email Address</label>
     <input
       type="email"
       name="email"
-      placeholder="Enter your valid email here!"
+      placeholder="johndoe@gmail.com"
       id="email"
-    />
-  </div>
-  <div>
-    <label htmlFor="password">Password</label>
+      className='bg-transparent border border-[#4B5768] focus:outline-none rounded-md pl-4 py-3'
+
+    /></div>
+  <div className='flex flex-col gap-2 w-full'>
+   <div className='flex flex-row justify-between items-center'>
+   <label htmlFor="password" className='text-mainText font-medium text-base'>Password</label>
+    <a href="/forgot" className='text-mainColor text-xs font-medium' >Forgot Password?</a>
+   </div>
+   
     <input
       type="password"
       name="password"
       placeholder="Enter your password here!"
       id="password"
+      className='bg-transparent border border-[#4B5768] focus:outline-none rounded-md pl-4 py-3'
     />
   </div>
-  <p className="forgot-password">
-       <a href="/forgot">Forgot Password?</a>
-        </p>
-  <button type="submit" className='LoginBtn'> Log In</button>
-</form>
 
+      
+  <button type="submit" className='bg-mainColor text-white w-full rounded-md px-30 py-3 font-semibold'> Log In</button>
+  <a href="../" className='text-mainColor font-semibold' >Create an account</a>
+       
+</form>
+    
    </section>
   )
 }
