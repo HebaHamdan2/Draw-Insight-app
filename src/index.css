@@ -10,6 +10,6 @@ html,body{
 /* only compile when use it on html */
 @layer components{
   .wrapper{
-    @apply max-w-[1200px] w-[80%] m-auto
+    @apply max-w-[500px] w-[80%] m-auto
   }
 }
