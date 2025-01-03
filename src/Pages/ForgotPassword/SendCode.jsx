@@ -1,9 +1,11 @@
 import React from 'react'
 
-export default function ForgotPassword() {
+export default function SendCode() {
   return (
     <section className="bg-mainBg py-[4%] ">
  <form className='wrapper flex flex-col justify-center items-center gap-6' >
+  <h2 className='text-mainText font-bold text-2xl'>Forgot Password?</h2>
+  <p className='text-[#666666] text-lg w-[70%] text-center'>Enter your email address to get the password reset code.</p>
   <div className='flex flex-col gap-2 w-full'>
     <label htmlFor="email" className='text-mainText font-medium text-base'>Email Address</label>
     <input
@@ -17,7 +19,8 @@ export default function ForgotPassword() {
 
       
   <button type="submit" className='bg-mainColor text-white w-full rounded-md px-30 py-3 font-semibold'>Send Code</button>
-  
+  <a href="../login" className='text-[#878787] text-base font-semibold' >Back to login</a>
+
        
 </form>
     
