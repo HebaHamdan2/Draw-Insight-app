@@ -1,51 +1,32 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
-const Sidebar = ({onMenuClick}) => {
+export default function Sidebar({onMenuClick}) {
   return (
-    <div className="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-main">
-      <div className="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-        <Link to="./" className="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-          <span className="fs-5 d-none d-sm-inline">Menu</span>
-        </Link>
-        <ul className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-          <li className="nav-item">
-            <button  className="btn btn-link nav-link align-middle px-0 text-white" onClick={() => onMenuClick('drawings')}>
-            <i class="fa-solid fa-clock-rotate-left"></i> <span className="ms-1 d-none d-sm-inline">Drawing History</span>
-            </button>
-          </li>
-          <li className="nav-item">
-            <button  className="btn btn-link nav-link align-middle px-0 text-white" onClick={() => onMenuClick('allChildren')}>
-            <i class="fa-solid fa-children"></i> <span className="ms-1 d-none d-sm-inline">Manage Children</span>
-            </button>
-          </li>
-          <li className="nav-item">
-            <button  className="btn btn-link nav-link align-middle px-0 text-white" onClick={() => onMenuClick('addChild')}>
-            <i class="fa-solid fa-person-circle-plus"></i> <span className="ms-1 d-none d-sm-inline">Add Child</span>
-            </button>
-          </li>
-        </ul>
-        <hr />
-        <div className="dropdown pb-4">
-          <Link href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="../null.jpg" alt="profile" width={30} height={30} className="rounded-circle" />
-            <span className="d-none d-sm-inline mx-1">username</span>
-          </Link>
-          <ul className="dropdown-menu dropdown-menu-light text-small shadow">
-            <li><Link className="dropdown-item" href="#">Account Settings</Link></li>
-            <li><Link className="dropdown-item" href="#">View Profile</Link></li>
-            <li>
-              <hr className="dropdown-divider" />
-            </li>
-            <li><Link className="dropdown-item" href="#">Log Out</Link></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-
-
+ <>
+ <div className="flex flex-col gap-3 px-7 pt-12 h-screen bg-[#121212] justify-between">
+<div className='flex flex-col gap-3'>
+<div className='flex flex-row gap-3 items-start cursor-pointer'>
+    <img src="./Overview.svg" alt="overview" />
+    <h3 className='font-semibold text-base capitalize text-white' onClick={()=>{onMenuClick('overview')}}>overview</h3>
+  </div>
+  <div className='flex flex-row gap-3 items-start cursor-pointer'>
+    <img src="./UserCircleGear.svg" alt="UserCircleGear" />
+    <h3 className='font-semibold text-base capitalize text-white'  onClick={()=>{onMenuClick('allChildren')}}>Child Management</h3>
+  </div>
+  <div className='flex flex-row gap-3 items-start cursor-pointer'>
+    <img src="./Overview.svg" alt="overview" />
+    <h3 className='font-semibold text-base capitalize text-white' onClick={()=>{onMenuClick('addChild')}}>add child</h3>
+  </div>
+  <div className='flex flex-row gap-3 items-start cursor-pointer'>
+    <img src="./Settings.svg" alt="settings" />
+    <h3 className='font-semibold text-base capitalize text-white' onClick={()=>{onMenuClick('settings')}}>settings</h3>
+  </div>
+</div>
+  <div className='flex flex-row gap-3 items-start px-4 bg-mainColor w-[76%] py-3 rounded cursor-pointer mb-6'>
+    <img src="./logout.svg" alt="settings" />
+    <h3 className='font-semibold text-base capitalize  text-white '>logout</h3>
+  </div>
+ </div>
+ </>
   )
 }
-
-export default Sidebar
