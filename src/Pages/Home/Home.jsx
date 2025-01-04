@@ -21,7 +21,7 @@ const Dashboard = () => {
   return (
   <>
   <div className="flex flex-row ">
-<Sidebar className="w-1/4" onMenuClick={setActiveContent} />
+<Sidebar className="w-1/12 md:w-1/4" onMenuClick={setActiveContent} />
 <div >
 {renderContent()}
 </div>
