@@ -3,7 +3,12 @@ import React from 'react'
 export default function SendCode() {
   return (
     <section className="bg-mainBg py-[4%] ">
- <form className='wrapper flex flex-col justify-center items-center gap-6' >
+ <form className='wrapper flex flex-col justify-center items-center gap-4' >
+ <div>
+  <h1 className="flex flex-row text-base font-extrabold italic md:text-2xl  font-Poppins uppercase cursor-pointer text-mainColor">
+    <span>draw</span><span className="text-mainText">insight.</span>
+  </h1>
+</div>
   <h2 className='text-mainText font-bold text-2xl'>Forgot Password?</h2>
   <p className='text-[#666666] text-lg w-[70%] text-center'>Enter your email address to get the password reset code.</p>
   <div className='flex flex-col gap-2 w-full'>

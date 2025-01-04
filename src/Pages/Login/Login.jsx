@@ -3,6 +3,11 @@ const Login = () => {
   return (
    <section className="bg-mainBg py-[4%] ">
  <form className='wrapper flex flex-col justify-center items-center gap-6' >
+ <div>
+  <h1 className="flex flex-row text-base italic font-extrabold md:text-2xl font-Poppins uppercase cursor-pointer text-mainColor">
+    <span>draw</span><span className="text-mainText">insight.</span>
+  </h1>
+</div>
   <div className='flex flex-col gap-2 w-full'>
     <label htmlFor="email" className='text-mainText font-medium text-base'>Email Address</label>
     <input

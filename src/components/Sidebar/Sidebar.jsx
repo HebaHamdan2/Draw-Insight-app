@@ -7,6 +7,11 @@ export default function Sidebar({onMenuClick}) {
  <>
  <div className="flex flex-col gap-3 px-7 pt-12 h-screen bg-[#121212] justify-between">
 <div className='flex flex-col gap-3'>
+<div>
+  <h1 className="flex flex-col md:flex-row items-start text-sm font-extrabold md:text-2xl pb-10 pl-3 font-Poppins uppercase cursor-pointer text-mainColor">
+    <span>draw</span><span className="text-white">insight.</span>
+  </h1>
+</div>
 <div className={`flex flex-row gap-3 items-start cursor-pointer px-4 py-3 ${activeMenu==='overview'?' bg-mainColor w-[100%]  rounded ':''}` } onClick={()=>{onMenuClick('overview');setActiveMenu('overview')}}>
     <img src="./Overview.svg" alt="overview" />
     <h3 className='hidden md:flex font-semibold text-base capitalize text-white '>overview</h3>
