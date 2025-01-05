@@ -19,14 +19,15 @@ const Dashboard = () => {
   };
 
   return (
-  <>
-  <div className="flex flex-row ">
-<Sidebar className="w-1/12 md:w-1/4" onMenuClick={setActiveContent} />
-<div >
-{renderContent()}
-</div>
+<>
+  <div className="flex flex-row min-h-screen">
+    <Sidebar className="w-1/5 md:w-1/4 bg-sidebarBg" onMenuClick={setActiveContent} />
+    <div className='flex-1 bg-mainBg p-5'>
+      {renderContent()}
+    </div>
   </div>
-  </>
+</>
+
   );
 };
 

@@ -1,59 +1,48 @@
 import React from 'react'
 const AddChild = () => {
   return (
-    <div className="addChild">
-    <form action="">
-     <img src="../null.png" alt="profile-pic" className="profile-pic" />
-     <div>
-       <label htmlFor="name">Child's Name</label>
+    <form className='flex flex-col justify-center items-center gap-4 w-[60%] m-auto' >
+     <img src="../null.png" alt="profile-pic" className="size-[180px] block cursor-pointer " />
+     <div className='flex flex-col gap-2 w-full'>
+       <label htmlFor="name" className='text-mainText font-medium text-base'>Child's Name</label>
        <input
          type="text"
          name="name"
          placeholder="Enter your child's name"
          id="name"
+         className='bg-transparent border border-[#4B5768] focus:outline-none rounded-md px-4 py-3'
        />
      </div>
-     <div class="form-group">
-  <label for="gender" class="form-label">Child's Gender</label>
-  <div id="gender" class="d-flex align-items-center">
-    <div class="form-check me-3">
-      <input
-        class="form-check-input"
-        type="radio"
-        name="gender"
-        id="male"
-        value="male"
-        required
-      />
-      <label class="form-check-label" for="male">Male</label>
-    </div>
-    <div class="form-check">
-      <input
-        class="form-check-input"
-        type="radio"
-        name="gender"
-        id="female"
-        value="female"
-      />
-      <label class="form-check-label" for="female">Female</label>
-    </div>
-  </div>
-</div>
-     <div>
-     <label for="date" class="form-label">Child's Birth Date</label>
+    <div  className='flex flex-col gap-2 w-full'>
+     <label for="date" className='text-mainText font-medium text-base'>Child's Birth Date</label>
 <input
   type="date"
   name="date"
   id="date"
-  class="form-control"
   placeholder="Enter your child's birth date"
+  className='bg-transparent border border-[#4B5768] focus:outline-none rounded-md px-4 py-3'
+
 />
 
      </div>
-     <button type="submit" className='AddChildBtn'>Add</button>
+     <div className='flex flex-col gap-2 w-full'>
+  <label for="gender" className='text-mainText font-medium text-base'>Child's Gender</label>
+  <div className="flex flex-row items-center gap-4">
+    <div className="flex items-center">
+      <input id="default-radio-1" type="radio" value="option1" name="default-radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2"/>
+      <label for="default-radio-1" className="ml-2 text-sm font-medium text-gray-900">Default radio</label>
+    </div>
+    <div className="flex items-center">
+      <input id="default-radio-2" type="radio" value="option2" name="default-radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2" checked/>
+      <label for="default-radio-2" className="ml-2 text-sm font-medium text-gray-900">Checked state</label>
+    </div>
+  </div>
+</div>
+
+
+     <button type="submit"  className='bg-mainColor text-white w-full rounded-md px-30 py-3 font-semibold'>Add</button>
    </form>
-   
-      </div>
+      
   )
 }
 
