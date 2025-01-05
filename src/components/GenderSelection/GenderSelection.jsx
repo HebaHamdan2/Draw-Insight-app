@@ -15,7 +15,7 @@ function GenderSelection() {
             name="gender" 
             checked={selectedGender === 'Male'} 
             onChange={() => setSelectedGender('Male')}
-            className="cursor-pointer w-4 h-4 text-mainColor bg-gray-100 border-gray-300 focus:ring-mainColor " 
+            className="cursor-pointer  accent-mainColor  w-4 h-4  shadow-mainColor bg-transparent border-none focus:ring-mainColor " 
           />
           <label htmlFor="male" className="cursor-pointer ml-2 text-sm md:text-base font-medium text-mainText">Male</label>
         </div>
@@ -27,7 +27,7 @@ function GenderSelection() {
             name="gender" 
             checked={selectedGender === 'Female'} 
             onChange={() => setSelectedGender('Female')}
-            className="cursor-pointer w-4 h-4 text-mainColor bg-gray-100 border-gray-300 focus:ring-mainColor " 
+            className="cursor-pointer w-4 h-4 accent-mainColor   focus:ring-mainColor " 
           />
           <label htmlFor="female" className="cursor-pointer ml-2  text-s md:text-base font-medium text-mainText">Female</label>
         </div>

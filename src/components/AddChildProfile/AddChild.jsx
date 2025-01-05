@@ -1,5 +1,6 @@
 import React from 'react'
 import GenderSelection from '../GenderSelection/GenderSelection.jsx'
+
 const AddChild = () => {
   return (
     <form className='flex flex-col justify-center items-center gap-4 w-[90%] lg:w-[60%] m-auto' >
@@ -21,7 +22,7 @@ const AddChild = () => {
   name="date"
   id="date"
   placeholder="Enter your child's birth date"
-  className='bg-transparent border border-[#4B5768] focus:outline-none rounded-md px-4 py-3'
+  className='bg-transparent border  border-[#4B5768] focus:outline-none rounded-md px-4 py-3'
 
 />
 
