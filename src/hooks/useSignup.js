@@ -1,19 +1,20 @@
 import axios from 'axios';
-import toast from 'react-hot-toast';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const useSignup = () => {
+  let navigate= useNavigate();
    async function signup(values){
-  
-        const { data } = await axios.post("http://localhost:3000/auth/signup", values).catch((err) => {
+   const { data } = await axios.post("http://localhost:3000/auth/signup", values).catch((err) => {
                   toast.error(err.response.data?.message);
                   if (err.response.data?.validationError[0].message) {
                     toast.error(err.response.data?.validationError[0].message);
+                    return;
                   }
                 });
                 if (data.message === "success") {
-                    toast.success("yes")
-                  Navigate("./login");
+                  toast.success("Signup successful!");
+                   navigate("./login");
                 } else {
                   toast.error(data.validationArray[0]);
                 

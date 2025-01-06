@@ -5,7 +5,7 @@ import Login from './pages/Login/Login.jsx';
 import Dashboard from './pages/Home/Home.jsx';
 import SendCode from './pages/ForgotPassword/SendCode.jsx';
 import { ResetPassword } from './pages/ForgotPassword/ResetPassword.jsx';
-import { Toaster } from 'react-hot-toast';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   let routers=createBrowserRouter([
@@ -21,7 +21,18 @@ function App() {
     <RouterProvider router={routers}>
 
 </RouterProvider>
- <Toaster/>
+ <ToastContainer
+ position="top-right"
+ autoClose={5000}
+ hideProgressBar={false}
+ newestOnTop={false}
+ closeOnClick={false}
+ rtl={false}
+ pauseOnFocusLoss
+ draggable
+ pauseOnHover
+ theme="light"
+ />
     </>
   
   );

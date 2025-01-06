@@ -5,6 +5,7 @@ import useSignup from '../../hooks/useSignup.js';
 
 const Signup = () => {
   let {signup}=useSignup()
+  
   const schema = Yup.object({
     username: Yup.string().required("Username is required").min(3, "Username must be at least 3 characters long").max(20, "Username must be at most 20 characters long"),
     email: Yup.string().required("Email is required").email("Please enter a valid email"),
@@ -47,6 +48,8 @@ const Signup = () => {
       onBlur={formik.handleBlur}
       className='bg-transparent border border-[#4B5768] focus:outline-none rounded-md pl-4 py-3'
     />
+    {formik.errors.username && formik.touched.username ? <div className='text-sm text-red-600'>{formik.errors.username}</div> : null}
+
   </div>
   <div className='flex flex-col gap-2 w-full'>
     <label htmlFor="address" className='text-mainText font-medium text-base'>Address</label>
@@ -60,6 +63,8 @@ const Signup = () => {
       onBlur={formik.handleBlur}
       className='bg-transparent border border-[#4B5768] focus:outline-none rounded-md pl-4 py-3'
     />
+     {formik.errors.address && formik.touched.address ? <div className='text-sm text-red-600'>{formik.errors.address}</div> : null}
+
   </div>
   <div className='flex flex-col gap-2 w-full'>
     <label htmlFor="email" className='text-mainText font-medium text-base'>Email Address</label>
@@ -74,6 +79,8 @@ const Signup = () => {
       onBlur={formik.handleBlur}
 
     />
+     {formik.errors.email && formik.touched.email ? <div className='text-sm text-red-600'>{formik.errors.email}</div> : null}
+
   </div>
   <div className='flex flex-col gap-2 w-full'>
     <label htmlFor="password" className='text-mainText font-medium text-base'>Password</label>
@@ -87,6 +94,8 @@ const Signup = () => {
       onChange={formik.handleChange}
       onBlur={formik.handleBlur}
     />
+     {formik.errors.password && formik.touched.password ? <div className='text-sm text-red-600'>{formik.errors.password}</div> : null}
+
   </div>
   <div className='flex flex-col gap-2 w-full'>
     <label htmlFor="cPassword" className='text-mainText font-medium text-base'>Confirm Password</label>
@@ -101,6 +110,8 @@ const Signup = () => {
       className='bg-transparent border border-[#4B5768] focus:outline-none rounded-md pl-4 py-3'
 
     />
+     {formik.errors.cPassword && formik.touched.cPassword ? <div className='text-sm text-red-600'>{formik.errors.cPassword}</div> : null}
+
   </div>
 
   <button type="submit" className='bg-mainColor text-white w-full rounded-md px-30 py-3 font-semibold'> Sign Up</button>
