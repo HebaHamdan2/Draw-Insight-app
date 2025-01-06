@@ -1,10 +1,11 @@
 import './App.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Signup from './Pages/Signup/Signup.jsx';
-import Login from './Pages/Login/Login.jsx';
-import Dashboard from './Pages/Home/Home.jsx';
-import SendCode from './Pages/ForgotPassword/SendCode.jsx';
-import { ResetPassword } from './Pages/ForgotPassword/ResetPassword.jsx';
+import Signup from './pages/Signup/Signup.jsx';
+import Login from './pages/Login/Login.jsx';
+import Dashboard from './pages/Home/Home.jsx';
+import SendCode from './pages/ForgotPassword/SendCode.jsx';
+import { ResetPassword } from './pages/ForgotPassword/ResetPassword.jsx';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   let routers=createBrowserRouter([
@@ -16,9 +17,13 @@ function App() {
     {path:'/dashboard',element:<Dashboard/>}
   ])
   return (
-  <RouterProvider router={routers}>
+    <>
+    <RouterProvider router={routers}>
 
-  </RouterProvider>
+</RouterProvider>
+ <Toaster/>
+    </>
+  
   );
 }
 
