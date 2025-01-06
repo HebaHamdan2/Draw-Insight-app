@@ -6,6 +6,7 @@ import Dashboard from './pages/Home/Home.jsx';
 import SendCode from './pages/ForgotPassword/SendCode.jsx';
 import { ResetPassword } from './pages/ForgotPassword/ResetPassword.jsx';
 import { ToastContainer } from 'react-toastify';
+import { AuthContextProvider } from './context/Auth.context.jsx';
 
 function App() {
   let routers=createBrowserRouter([
@@ -18,9 +19,11 @@ function App() {
   ])
   return (
     <>
+    <AuthContextProvider>
     <RouterProvider router={routers}>
 
 </RouterProvider>
+    </AuthContextProvider>
  <ToastContainer
  position="top-right"
  autoClose={5000}
