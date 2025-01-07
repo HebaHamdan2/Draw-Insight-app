@@ -12,13 +12,14 @@ const useLogin = () => {
    const  data  = await axios.post("http://localhost:3000/auth/signin", values).catch((err) => {
         toast.error(err?.response?.data?.message) 
                 });
-                if (data?.message === "success") {
+                console.log(data.data.message)
+                if (data.data?.message === "success") {
                     localStorage.setItem("parent", JSON.stringify(data))
                     setAuthUser(data)
                   toast.success("Login successful!");
                    navigate("../dashboard");
                 } else {
-                  toast.error(data?.validationArray[0]);
+                  toast.error(data.data?.validationArray[0]);
                 
               }
    
