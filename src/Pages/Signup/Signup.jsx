@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import useSignup from '../../hooks/useSignup.js';
 
 const Signup = () => {
-  let {signup}=useSignup()
+  let signup=useSignup()
   
   const schema = Yup.object({
     username: Yup.string().required("Username is required").min(3, "Username must be at least 3 characters long").max(20, "Username must be at most 20 characters long"),

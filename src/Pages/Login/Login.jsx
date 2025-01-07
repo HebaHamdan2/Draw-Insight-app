@@ -4,7 +4,7 @@ import * as Yup from "yup"
 import useLogin from '../../hooks/useLogin.js'
 const Login = () => {
   
-  let {login}=useLogin()
+  let login=useLogin()
   const schema = Yup.object({
     email: Yup.string().required("Email is required").email("Please enter a valid email"),
     password: Yup.string().required("Password is required")

@@ -4,13 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../context/Auth.context.jsx';
 
-const useLogin = () => {
+const useAddProfile = () => {
     let navigate= useNavigate();
     let { setAuthUser } = useContext(AuthContext)
 
-   async function login(values){
-   const  data  = await axios.post("http://localhost:3000/auth/signin", values).catch((err) => {
-        toast.error(err?.response?.data?.message) 
+   async function addChild(values){
+   const  data  = await axios.post("http://localhost:3000/child", values).catch((err) => {
+    toast.error(err?.response?.data?.message) 
                 });
                 if (data?.message === "success") {
                     localStorage.setItem("parent", JSON.stringify(data))
@@ -23,7 +23,7 @@ const useLogin = () => {
               }
    
 }
-  return login;
+  return addChild
 }
 
-export default useLogin;
+export default useAddProfile
