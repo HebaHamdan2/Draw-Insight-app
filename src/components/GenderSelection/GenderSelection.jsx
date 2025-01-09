@@ -24,8 +24,8 @@ function GenderSelection({ value, onChange }) {
             type="radio" 
             value="Female" 
             name="gender" 
-            checked={value === 'Male'} 
-            onChange={() => onChange('Male')}
+            checked={value === 'Female'} 
+            onChange={() => onChange('Female')}
             className="cursor-pointer w-4 h-4 accent-mainColor   focus:ring-mainColor " 
           />
           <label htmlFor="female" className="cursor-pointer ml-2  text-s md:text-base font-medium text-mainText">Female</label>

@@ -10,17 +10,27 @@ const useAddProfile = () => {
     let { authUser } = useContext(AuthContext)
 
     const addChild = async (values) => {
+      const formData = new FormData();
+formData.append('name', values.name);
+formData.append('dateOfBirth', values.dateOfBirth);
+formData.append('gender', values.gender);
+formData.append('image', values.image);  
+
+
       try {
-        const response = await axios.post("http://localhost:3000/child", values, {
-          headers: { authorization: `Heba__${authUser.token}` },
-        });
-        console.log(response.data); // Debugging the response
+        const response = await axios.post("http://localhost:3000/child", formData, {
+          headers: { 
+              authorization: `Heba__${authUser.token}`,
+              'Content-Type': 'multipart/form-data',  
+          },
+      });
     
         if (response.data?.message === "success") {
           toast.success("Child added successfully!");
           navigate("../dashboard");
         } else {
-          toast.error(response.data?.validationArray[0] || "An error occurred.");
+          toast.error(response.data?.validationError[0]?.message || "An error occurred.");
+          return
         }
       } catch (err) {
         console.error("Error adding child:", err);
