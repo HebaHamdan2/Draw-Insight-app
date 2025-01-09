@@ -3,22 +3,26 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const useSignup = () => {
-  let navigate= useNavigate();
-   async function signup(values){
-   const data  = await axios.post("http://localhost:3000/auth/signup", values).catch((err) => {
-    toast.error(err?.response?.data?.message) 
+  let navigate = useNavigate();
 
-                });
-                if (data?.message === "success") {
-                  toast.success("Signup successful!");
-                   navigate("./login");
-                } else {
-                  toast.error(data?.validationArray[0]);
-                
-              }
-   
-}
-  return signup
+  async function signup(values) {
+    try {
+      const response = await axios.post("http://localhost:3000/auth/signup", values);
+      const { data } = response;
+
+      if (data?.message === "success") {
+        toast.success("Signup successful!");
+        navigate("./login");
+      } else {
+        toast.error(data?.validationArray[0] || "Signup failed.");
+      }
+    } catch (err) {
+      const errorMessage = err?.response?.data?.message || "An error occurred during signup.";
+      toast.error(errorMessage);
+    }
+  }
+
+  return signup;
 }
 
-export default useSignup
+export default useSignup;

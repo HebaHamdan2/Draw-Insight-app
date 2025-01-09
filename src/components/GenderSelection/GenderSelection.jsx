@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-function GenderSelection() {
-  const [selectedGender, setSelectedGender] = useState('Male');
+function GenderSelection({ value, onChange }) {
 
   return (
     <div className='flex flex-col gap-2 w-full'>
@@ -12,9 +11,9 @@ function GenderSelection() {
             id="male" 
             type="radio" 
             value="Male" 
+            checked={value === 'Male'} 
+            onChange={() => onChange('Male')}
             name="gender" 
-            checked={selectedGender === 'Male'} 
-            onChange={() => setSelectedGender('Male')}
             className="cursor-pointer  accent-mainColor  w-4 h-4  shadow-mainColor bg-transparent border-none focus:ring-mainColor " 
           />
           <label htmlFor="male" className="cursor-pointer ml-2 text-sm md:text-base font-medium text-mainText">Male</label>
@@ -25,8 +24,8 @@ function GenderSelection() {
             type="radio" 
             value="Female" 
             name="gender" 
-            checked={selectedGender === 'Female'} 
-            onChange={() => setSelectedGender('Female')}
+            checked={value === 'Male'} 
+            onChange={() => onChange('Male')}
             className="cursor-pointer w-4 h-4 accent-mainColor   focus:ring-mainColor " 
           />
           <label htmlFor="female" className="cursor-pointer ml-2  text-s md:text-base font-medium text-mainText">Female</label>

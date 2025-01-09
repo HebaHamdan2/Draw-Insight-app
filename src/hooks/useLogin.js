@@ -9,18 +9,22 @@ const useLogin = () => {
     let { setAuthUser } = useContext(AuthContext)
 
    async function login(values){
-   const  data  = await axios.post("http://localhost:3000/auth/signin", values).catch((err) => {
-        toast.error(err?.response?.data?.message) 
-                });
-                console.log(data.data.message)
-                if (data.data?.message === "success") {
+    try{
+   const  response  = await axios.post("http://localhost:3000/auth/signin", values)
+    const { data } = response;   
+  
+                if (data?.message === "success") {
                     localStorage.setItem("parent", JSON.stringify(data))
                     setAuthUser(data)
                   toast.success("Login successful!");
                    navigate("../dashboard");
                 } else {
-                  toast.error(data.data?.validationArray[0]);
+                  toast.error(data?.validationArray[0]);
                 
+              }}
+              catch (err) {
+                const errorMessage = err?.response?.data?.message || "An error occurred during signin.";
+                toast.error(errorMessage);
               }
    
 }

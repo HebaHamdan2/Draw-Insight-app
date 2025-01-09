@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import useForgotPassword from '../../hooks/useForgotPassword.js';
 
 export const ResetPassword = () => {
-  let resetPassword=useForgotPassword()
+  let {resetPassword}=useForgotPassword()
 
   const schema = Yup.object({
     code:Yup.string().required("Verification Code is required"),
