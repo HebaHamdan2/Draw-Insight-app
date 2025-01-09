@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Logout from '../Logout/Logout.js';
 
 export default function Sidebar({onMenuClick}) {
   const [activeMenu, setActiveMenu] = useState('overview');
@@ -29,10 +30,7 @@ export default function Sidebar({onMenuClick}) {
     <h3 className='hidden md:flex font-semibold text-base capitalize text-white'>settings</h3>
   </div>
 </div>
-  <div className='flex flex-row gap-3 items-start justify-center md:justify-start  px-4 bg-mainColor w-[100%] py-3 rounded cursor-pointer mb-6'>
-    <img src="./logout.svg" alt="settings" />
-    <h3 className='hidden md:flex font-semibold text-base capitalize  text-white '>logout</h3>
-  </div>
+ <Logout/>
  </div>
  </>
   )
