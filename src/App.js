@@ -6,7 +6,7 @@ import Protected from './components/Protected/Protected.js';
 import ProtectedPage from './components/Protected/ProtectedPage.js';
 import { lazy, Suspense } from 'react';
 import AddChild from './components/AddChildProfile/AddChild.jsx';
-import Navbar from './components/Navbar/Navbar.jsx';
+import Overview from './components/Overview/Overview.jsx';
 const Signup = lazy(() => import('./pages/Signup/Signup.jsx'));
 const Login = lazy(() => import('./pages/Login/Login.jsx'));
 const Dashboard = lazy(() => import('./pages/dashboard/dashboard.jsx'));
@@ -45,8 +45,7 @@ function App() {
       path:'/dashboard/overview',
       element:(
         <Protected> 
-          <Navbar/>
-      <h1>Hi overview</h1>
+        <Overview/>
       </Protected>
       )
     },
