@@ -14,7 +14,7 @@ const Logout = () => {
       onClick={handleLogout} 
       className='flex flex-row gap-3 items-start justify-center md:justify-start px-4 bg-mainColor w-[100%] py-3 rounded cursor-pointer mb-6'
     >
-      <img src="./logout.svg" alt="settings" />
+      <img src="/logout.svg" alt="settings" />
       <h3 className='hidden md:flex font-semibold text-base capitalize text-white'>
         Logout
       </h3>

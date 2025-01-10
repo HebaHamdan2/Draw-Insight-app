@@ -14,19 +14,19 @@ export default function Sidebar() {
   </NavLink>
 </div>
 <NavLink   className={({ isActive }) =>`flex flex-row gap-3  items-start justify-center md:justify-start cursor-pointer px-4 py-3 ${isActive?'bg-mainColor w-[100%]  rounded ':''}`} to={'/dashboard/overview'}>
-    <img src="./Overview.svg" alt="overview" />
+    <img src="/Overview.svg" alt="overview" />
     <h3 className='hidden md:flex font-semibold text-base capitalize text-white '>overview</h3>
   </NavLink>
   <NavLink  className={({ isActive }) =>`flex flex-row gap-3  items-start justify-center md:justify-start cursor-pointer px-4 py-3 ${isActive?'bg-mainColor w-[100%]  rounded ':''}`} to={'/dashboard/profiles'}>
-    <img src="./UserCircleGear.svg" alt="UserCircleGear" />
+    <img src="/UserCircleGear.svg" alt="UserCircleGear" />
     <h3 className='hidden md:block font-semibold text-base capitalize text-white'>Children Profiles</h3>
   </NavLink>
   <NavLink  className={({ isActive }) =>`flex flex-row gap-3  items-start justify-center md:justify-start cursor-pointer px-4 py-3 ${isActive?'bg-mainColor w-[100%]  rounded ':''}`} to={'/dashboard/addChild'}>
-    <img src="./Add Square 03.svg" alt="add" />
+    <img src="/Add Square 03.svg" alt="add" />
     <h3 className='hidden md:flex font-semibold text-base capitalize text-white'>add child</h3>
   </NavLink>
   <NavLink  className={({ isActive }) =>`flex flex-row gap-3  items-start justify-center md:justify-start cursor-pointer px-4 py-3 ${isActive?'bg-mainColor w-[100%]  rounded ':''}`} to={'/dashboard/settings'}>
-    <img src="./Settings.svg" alt="settings" />
+    <img src="/Settings.svg" alt="settings" />
     <h3 className='hidden md:flex font-semibold text-base capitalize text-white'>settings</h3>
   </NavLink>
 </div>
