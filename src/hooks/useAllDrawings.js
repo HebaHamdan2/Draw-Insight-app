@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { AuthContext } from '../context/Auth.context.jsx';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -19,7 +19,7 @@ const useAllDrawings = () => {
       if (response.data?.message === 'success') {
         const data = response.data;
         setTotalPages(data.totalPages); // Set total pages from the response
-        return data.drawings; // Return only the drawings
+        return data; 
       }
     } catch (err) {
       toast.error(err?.response?.data?.message || 'An error occurred.');
