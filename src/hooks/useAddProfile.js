@@ -33,7 +33,6 @@ formData.append('image', values.image);
           return
         }
       } catch (err) {
-        console.error("Error adding child:", err);
         toast.error(err?.response?.data?.message || "An error occurred.");
       }
     };
