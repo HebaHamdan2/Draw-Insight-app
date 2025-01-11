@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../Navbar/Navbar.jsx';
 import useAllDrawings from '../../hooks/useAllDrawings.js';
+import moment from 'moment/moment.js';
 
 const Overview = () => {
   const { getAllDrawings, page, setPage, totalPages } = useAllDrawings();
   const [drawings, setDrawings] = useState([]);
-  const [loading, setLoading] = useState(false); // To track loading state
+  const [loading, setLoading] = useState(false); 
 
   const fetchDrawings = async (currentPage) => {
-    setLoading(true); // Set loading to true before fetching
-    const data = await getAllDrawings(currentPage);
+    setLoading(true); 
+    const data = await getAllDrawings(currentPage);//call it once loading more clicked then the drawings array append
 
     if (data) {
       const processedDrawings = data.drawings.map((drawing) => {
         const predictions = drawing.prediction || {};
-        const maxPredictionKey = Object.keys(predictions).reduce((a, b) =>
+        const maxPredictionKey = Object.keys(predictions).reduce((a, b) =>//to display the main result "max percent" 
           predictions[a] > predictions[b] ? a : b
         );
         const maxPredictionValue = predictions[maxPredictionKey];
@@ -26,23 +27,25 @@ const Overview = () => {
       });
 
       // Append new drawings to the existing list
-      setDrawings((prevDrawings) => [...prevDrawings, ...processedDrawings]);
-    } else {
-      console.error('Error: Drawings data is not available or is not an array');
+      if(currentPage>1){
+        setDrawings((prevDrawings) => [...prevDrawings, ...processedDrawings]);
+
+      }else{
+        setDrawings([...processedDrawings])
+      }
     }
 
-    setLoading(false); // Set loading to false after fetching
+    setLoading(false); 
   };
 
   useEffect(() => {
-    fetchDrawings(page); // Fetch initial drawings when the component mounts
+    fetchDrawings(page); //  initial drawings when the component mounts
   }, []);
 
-  // Handle "Load More" button click
   const handleLoadMore = () => {
     const nextPage = page + 1;
-    setPage(nextPage); // Increment page state
-    fetchDrawings(nextPage); // Fetch the next page of drawings
+    setPage(nextPage); 
+    fetchDrawings(nextPage); 
   };
 
   return (
@@ -63,7 +66,7 @@ const Overview = () => {
                 <th className="p-4 font-bold text-sm">Date</th>
               </tr>
             </thead>
-            <tbody className="bg-white">
+            <tbody className="bg-white text-[#666666] font-medium text-base">
               {drawings.length > 0 ? (
                 drawings.map((drawing, index) => (
                   <tr key={index} className="border-t">
@@ -81,7 +84,11 @@ const Overview = () => {
                     <td className="p-4">
                       {drawing.maxPredictionKey}: {drawing.maxPredictionValue}
                     </td>
-                    <td className="p-4">{new Date(drawing.createdAt).toLocaleDateString() || 'Unknown'}</td>
+                    <td className="p-4">
+  {drawing.createdAt 
+    ? moment(drawing.createdAt).format('DD MMMM, YYYY') 
+    : 'Unknown'}
+</td>
                   </tr>
                 ))
               ) : (
@@ -100,8 +107,8 @@ const Overview = () => {
           {page < totalPages && (
             <button
               onClick={handleLoadMore}
-              className="px-4 py-2 bg-blue-500 text-white rounded"
-              disabled={loading} // Disable button while loading
+              className="px-6 py-3 bg-mainColor text-white rounded-[4px] font-bold text-base"
+              disabled={loading} 
             >
               {loading ? 'Loading...' : 'Load More'}
             </button>
