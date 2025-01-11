@@ -1,7 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import useParentAccount from '../../hooks/useParentAccount.js';
 
 const Navbar = () => {
+  let {getAccountInfo}=useParentAccount();
+  let [parentImg,setParentImage]=useState('null');
+  let [parentName,setParentName]=useState('Unknown');
+  useEffect(() => {
+    const getInfo = async () => {
+      try {
+        const data = await getAccountInfo();
+        if (data) {
+          console.log(data)
+          setParentImage(data.parent.profilePic==='null'? 'null':data.parent.profilePic); 
+          setParentName(data.parent.username || 'Unknown'); 
+        }
+      } catch (error) {
+        console.error('Failed to fetch account info:', error);
+      }
+    };
+
+    getInfo();
+  }, [getAccountInfo]);
   return (
     <div className="bg-[#EEEEEE] py-2 flex justify-start md:justify-end px-4">
       <ul className='flex gap-2 md:gap-6 justify-center items-center w-full max-w-md md:max-w-lg lg:max-w-xl'>
@@ -19,8 +39,8 @@ const Navbar = () => {
         </li>
         <li>
           <Link to={'/dashboard/settings'} className='flex gap-2 items-center'>
-            <h3 className='text-sm font-bold capitalize'>Parent</h3>
-            <img src="/null.jpg" className='w-8 h-8 rounded-[7px]' alt="parent" />
+            <h3 className='text-sm font-bold capitalize'>{parentName}</h3>
+            <img src={parentImg || '/null.jpg'}  className='w-8 h-8 rounded-[7px]' alt="parent" />
           </Link>
         </li>
       </ul>
