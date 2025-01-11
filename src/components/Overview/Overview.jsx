@@ -7,7 +7,6 @@ const Overview = () => {
   const { getAllDrawings, page, setPage, totalPages } = useAllDrawings();
   const [drawings, setDrawings] = useState([]);
   const [loading, setLoading] = useState(false); 
-
   const fetchDrawings = async (currentPage) => {
     setLoading(true); 
     const data = await getAllDrawings(currentPage);//call it once loading more clicked then the drawings array append

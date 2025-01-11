@@ -6,6 +6,7 @@ const Navbar = () => {
   let {getAccountInfo}=useParentAccount();
   let [parentImg,setParentImage]=useState('null');
   let [parentName,setParentName]=useState('Unknown');
+  
   useEffect(() => {
     const getInfo = async () => {
       try {
