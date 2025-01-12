@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useParentAccount from '../../hooks/useParentAccount.js';
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
   let {getAccountInfo}=useParentAccount();
@@ -12,12 +13,11 @@ const Navbar = () => {
       try {
         const data = await getAccountInfo();
         if (data) {
-          console.log(data)
-          setParentImage(data.parent.profilePic==='null'? 'null':data.parent.profilePic); 
+          setParentImage(data.parent.profilePic==='null'? 'null':data.parent.profilePic?.secure_url); 
           setParentName(data.parent.username || 'Unknown'); 
         }
       } catch (error) {
-        console.error('Failed to fetch account info:', error);
+        toast.error('Failed to fetch account info:', error);
       }
     };
 

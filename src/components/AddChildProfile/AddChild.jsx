@@ -66,7 +66,7 @@ const AddChild = () => {
     >
       <div>
         <img
-          src={imagePreview || '../null.png'} // Use preview if available
+          src={imagePreview || '/null.png'} // Use preview if available
           alt="profile-pic"
           className="size-[95px] md:size-[180px] rounded-full block cursor-pointer"
           onClick={handleImageClick}
