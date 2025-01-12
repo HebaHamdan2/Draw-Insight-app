@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const ChildCard = ({name,profilePic,gender}) => {
+const ChildCard = ({name,profilePic,gender,childId}) => {
   return (
    <>
    <div className="flex flex-col p-6 bg-white rounded-lg items-center justify-center gap-2 md:gap-6">
@@ -21,9 +21,10 @@ const ChildCard = ({name,profilePic,gender}) => {
 <h3 className='font-semibold text-xl'>{gender}</h3>
 <p className='text-sm text-[#9F9F9F]'>Gender</p>
 </div>
+
 </div>
 
-<Link  to='/' className='bg-mainColor text-white flex gap-1 font-medium text-sm px-5 py-1 rounded'>Details <img src="/Vector (7).svg" alt="arrow" /></Link>
+<Link  to={`/${childId}`} className='bg-mainColor text-white flex gap-1 font-medium text-sm px-5 py-1 rounded'>Details <img src="/Vector (7).svg" alt="arrow" /></Link>
    </div>
    </>
   )

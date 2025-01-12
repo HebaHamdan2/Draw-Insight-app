@@ -9,7 +9,7 @@ const useAllChildren = () => {
  const [totalPages, setTotalPages] = useState(1); 
  const getAllChildren=async(currentPage)=>{
 try{
-    const response = await axios.get(`http://localhost:3000/child?page=${currentPage}`, {
+    const response = await axios.get(`http://localhost:3000/child?page=${currentPage}&limit=6`, {
         headers: {
           authorization: `Heba__${authUser.token}`,
         },
