@@ -102,7 +102,7 @@ const Overview = () => {
         </div>
 
         {/* Load More Button */}
-        <div className="flex justify-center mt-4">
+     {drawings.length>0? <div className="flex justify-center mt-4">
           {page < totalPages && (
             <button
               onClick={handleLoadMore}
@@ -112,7 +112,8 @@ const Overview = () => {
               {loading ? 'Loading...' : 'Load More'}
             </button>
           )}
-        </div>
+        </div>:''}
+       
       </div>
     </>
   );

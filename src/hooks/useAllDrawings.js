@@ -8,10 +8,9 @@ const useAllDrawings = () => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1); 
 
-  const getAllDrawings = async (page,searchTerm) => {
+  const getAllDrawings = async (page) => {
     try {
       const response = await axios.get(`http://localhost:3000/drawing?page=${page}`, {
-        params: { name: searchTerm },
         headers: {
           authorization: `Heba__${authUser.token}`,
         },
