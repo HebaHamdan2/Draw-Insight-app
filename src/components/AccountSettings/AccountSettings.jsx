@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import useParentAccount from '../../hooks/useParentAccount.js'
+import { Link } from 'react-router-dom';
 
 const AccountSettings = () => {
     const{getAccountInfo,editAccountInfo}= useParentAccount();
@@ -8,6 +9,11 @@ const AccountSettings = () => {
     const [image, setImage] = useState(null);
     const [address, setAddress] = useState(parentInfo.address || '');
     const [username, setUsername] = useState(parentInfo.username || '');
+    const [isDropdownVisible, setDropdownVisible] = useState(false);
+
+    const toggleDropdown = () => {
+      setDropdownVisible(!isDropdownVisible);
+    };
     const handleEditAccount=async()=>{
 await editAccountInfo(username||parentInfo.username,address||parentInfo.address,image);
 setImage(null)
@@ -31,8 +37,8 @@ const handleImageClick = () => {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      setImage(file); // Update image state
-      setImagePreview(URL.createObjectURL(file)); // Set preview URL
+      setImage(file); 
+      setImagePreview(URL.createObjectURL(file)); 
     }
   };
   return (
@@ -53,23 +59,27 @@ const handleImageClick = () => {
         <p className='font-normal text-xs md:text-sm text-slate-400'>{parentInfo.email}</p>
         </div>
     </div>
-    <div className='flex row gap-1 items-center'>
-    <button 
-  className='text-white font-normal text-xs rounded-lg px-7 py-2 md:text-sm bg-mainColor' 
-  type='submit' 
-  onClick={handleEditAccount}
-  disabled={!address && !image && !username} >
-  Edit
-</button>
-        <div className='flex flex-col'>
-        <img className='w-8 cursor-pointer' src="/Dot Vertical.svg" alt="drop-down" />
-        <div className='flex flex-col'>
+    <div className='flex flex-row gap-1 items-center'>
+  <button 
+    className='text-white font-normal text-xs rounded-lg px-7 py-2 md:text-sm bg-mainColor' 
+    type='submit' 
+    onClick={handleEditAccount}
+    disabled={!address && !image && !username}>
+    Edit
+  </button>
+  <div className='flex flex-col relative'>
+  <img className='w-8 cursor-pointer' src="/Dot Vertical.svg" alt="drop-down" onClick={toggleDropdown} />
+  <div className={`flex-col w-48 rounded-md text-xs bg-white absolute right-1/2 top-full p-4 mt-1 transition-all ${isDropdownVisible ? 'flex' : 'hidden'}`}>
+    <Link to="/">
+      <p className='text-mainText'>Change Password</p>
+    </Link>
+    <div className='w-full bg-slate-200 h-px my-2'></div>
+    <p className='text-red-500 cursor-pointer'>Delete Account</p>
+  </div>
+</div>
 
-        </div>
-        </div>
-       
+</div>
 
-    </div>
 </div>
 <div className="px-1 md:w-[95%] md:m-auto grid grid-cols-1 md:grid-cols-2 gap-4">
    <div className='flex flex-col gap-3'> 
