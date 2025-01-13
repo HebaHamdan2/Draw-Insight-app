@@ -81,7 +81,7 @@ const deleteleteDrawing=async(childId,drawingId)=>{
     }
   }
 }
-const editProfileInfo = async (childId,name, gender,dateOfBirth, profilePic) => {
+const editProfileInfo = async (childId, name, gender, dateOfBirth, profilePic) => {
   try {
     let body;
     let headers = {
@@ -97,15 +97,23 @@ const editProfileInfo = async (childId,name, gender,dateOfBirth, profilePic) => 
       if (gender) {
         body.append('gender', gender);
       }
+      if (dateOfBirth) {
+        body.append('dateOfBirth', dateOfBirth);
+      }
       body.append('image', profilePic);
       headers['Content-Type'] = 'multipart/form-data';
     } else {
       // Use JSON body if no image
-      body = {
-        name,
-        gender,
-        dateOfBirth
-      };
+      body = {};
+      if (name) {
+        body.name = name;
+      }
+      if (gender) {
+        body.gender = gender;
+      }
+      if (dateOfBirth) {
+        body.dateOfBirth = dateOfBirth;
+      }
       headers['Content-Type'] = 'application/json';
     }
 
@@ -120,6 +128,7 @@ const editProfileInfo = async (childId,name, gender,dateOfBirth, profilePic) => 
     toast.error(err?.response?.data?.message || 'An error occurred.');
   }
 };
+
  
  return {getChildProfile,deleteChildProfile,deleteleteDrawing,editProfileInfo}
 }
