@@ -27,7 +27,7 @@ formData.append('image', values.image);
     
         if (response.data?.message === "success") {
           toast.success("Child added successfully!");
-          navigate("../dashboard");
+          navigate("../../dashboard");
         } else {
           toast.error(response.data?.validationError[0]?.message || "An error occurred.");
           return

@@ -24,7 +24,7 @@ const ChildCard = ({name,profilePic,gender,childId}) => {
 
 </div>
 
-<Link  to={`/${childId}`} className='bg-mainColor text-white flex gap-1 font-medium text-sm px-5 py-1 rounded'>Details <img src="/Vector (7).svg" alt="arrow" /></Link>
+<Link  to={`/dashboard/profiles/${childId}`} className='bg-mainColor text-white flex gap-1 font-medium text-sm px-5 py-1 rounded'>Details <img src="/Vector (7).svg" alt="arrow" /></Link>
    </div>
    </>
   )

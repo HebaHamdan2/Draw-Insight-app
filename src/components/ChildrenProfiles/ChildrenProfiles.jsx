@@ -53,7 +53,7 @@ const ChildrenProfiles = () => {
   </div>}
   
             {/* Load More Button */}
-          {children.length>0?
+          
               <div className="flex justify-center mt-4">
               {currentPage < totalPages && (
                 <button
@@ -64,7 +64,7 @@ const ChildrenProfiles = () => {
                   {loading ? 'Loading...' : 'Load More'}
                 </button>
               )}
-            </div>:''}
+            </div>
         
         
         </div>
