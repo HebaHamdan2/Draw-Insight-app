@@ -2,8 +2,12 @@ import  { useContext } from 'react'
 import { AuthContext } from '../context/Auth.context.jsx';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 function useParentAccount() {
+  
+  let navigate= useNavigate();
       const { authUser } = useContext(AuthContext);
     const getAccountInfo=async()=>{
         try{
@@ -22,9 +26,7 @@ function useParentAccount() {
             toast.error(err?.response?.data?.message || 'An error occurred.');
         }
 
-    }
-      
-      
+    }    
     const editAccountInfo = async (username, address, profilePic) => {
       try {
         let body;
@@ -63,8 +65,40 @@ function useParentAccount() {
         toast.error(err?.response?.data?.message || 'An error occurred.');
       }
     };
+  
+    const deleteAccount = async () => {
+      const result = await Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      });
     
-  return {getAccountInfo,editAccountInfo}
+      if (result.isConfirmed) {
+        try {
+          localStorage.removeItem('parent'); 
+          navigate('/login');
+          const response = await axios.delete(`http://localhost:3000/parent/delete`, {
+            headers: {
+              authorization: `Heba__${authUser.token}`,
+            },
+          });
+    
+          if (response.data?.message === "Parent account and associated data deleted successfully") {
+            Swal.fire('Deleted!', 'Your account has been deleted.', 'success');
+          }
+        } catch (err) {
+          toast.error(err?.response?.data?.message || 'An error occurred.');
+        }
+      }
+    };
+    
+    
+    
+  return {getAccountInfo,editAccountInfo,deleteAccount}
 }
 
 export default useParentAccount

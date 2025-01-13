@@ -3,7 +3,7 @@ import useParentAccount from '../../hooks/useParentAccount.js'
 import { Link } from 'react-router-dom';
 
 const AccountSettings = () => {
-    const{getAccountInfo,editAccountInfo}= useParentAccount();
+    const{getAccountInfo,editAccountInfo,deleteAccount}= useParentAccount();
     let [parentInfo,setParentInfo]=useState({});
     const [imagePreview, setImagePreview] = useState(null); // State for image preview
     const [image, setImage] = useState(null);
@@ -74,7 +74,8 @@ const handleImageClick = () => {
       <p className='text-mainText'>Change Password</p>
     </Link>
     <div className='w-full bg-slate-200 h-px my-2'></div>
-    <p className='text-red-500 cursor-pointer'>Delete Account</p>
+    <p className='text-red-500 cursor-pointer' onClick={deleteAccount}>Delete Account</p>
+
   </div>
 </div>
 
