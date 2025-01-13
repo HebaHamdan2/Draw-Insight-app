@@ -6,9 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 function useParentAccount() {
-  
-  let navigate= useNavigate();
-      const { authUser } = useContext(AuthContext);
+ let navigate= useNavigate();
+ const { authUser } = useContext(AuthContext);
     const getAccountInfo=async()=>{
         try{
             const response = await axios.get(`http://localhost:3000/parent`, {
@@ -66,14 +65,14 @@ function useParentAccount() {
       }
     };
   
-    const deleteAccount = async () => {
+   const deleteAccount = async () => {
       const result = await Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
+        confirmButtonColor: '#FF698D',
+        cancelButtonColor: '#191D23',
         confirmButtonText: 'Yes, delete it!'
       });
     
@@ -95,10 +94,30 @@ function useParentAccount() {
         }
       }
     };
-    
-    
-    
-  return {getAccountInfo,editAccountInfo,deleteAccount}
+    const changePassword=async(values)=> {
+      try {
+        const response = await axios.patch(
+          "http://localhost:3000/parent/updatePassword",
+          values, {
+            headers: {
+              authorization: `Heba__${authUser.token}`,
+              'Content-Type': 'application/json',
+            },
+          }
+        );
+        if (response.data?.message === "success") {
+          toast.success("Password changed successfully!");
+          navigate("/dashboard");
+        } else {
+          toast.error(response.data?.validationArray[0] || "Error occurred");
+        }
+      } catch (err) {
+        const errorMessage = err?.response?.data?.message || "An error occurred during password change.";
+        toast.error(errorMessage);
+      }
+      
+    }
+  return {getAccountInfo,editAccountInfo,deleteAccount,changePassword}
 }
 
 export default useParentAccount

@@ -1,5 +1,5 @@
 import './App.css';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { AuthContextProvider } from './context/Auth.context.jsx';
 import Protected from './components/Protected/Protected.js';
@@ -9,6 +9,7 @@ import AddChild from './components/AddChildProfile/AddChild.jsx';
 import Overview from './components/Overview/Overview.jsx';
 import ChildrenProfiles from './components/ChildrenProfiles/ChildrenProfiles.jsx';
 import AccountSettings from './components/AccountSettings/AccountSettings.jsx';
+import ChangePassword from './components/ChangePassword/ChangePassword.jsx';
 const Signup = lazy(() => import('./pages/Signup/Signup.jsx'));
 const Login = lazy(() => import('./pages/Login/Login.jsx'));
 const Dashboard = lazy(() => import('./pages/dashboard/dashboard.jsx'));
@@ -44,6 +45,10 @@ function App() {
     ),
   children:[
     {
+      path: '',
+      element: <Navigate to="/dashboard/overview" replace />,
+    },
+    {
       path:'/dashboard/overview',
       element:(
         <Protected> 
@@ -74,6 +79,14 @@ function App() {
        <AccountSettings/>
       </Protected>
       )
+    },
+    {
+      path:'/dashboard/change-password',
+      element:(
+        <Protected> 
+       <ChangePassword/>
+      </Protected>
+      ),
     },
     
   ]},
