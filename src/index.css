@@ -6,6 +6,13 @@
 
 html,body{
   font-family: Inter;
+  
+.progress-ring__circle {
+  stroke-dasharray: 400, 400;
+  transition: stroke-dashoffset 0.35s;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
 }
 
 /* only compile when use it on html */
@@ -13,4 +20,5 @@ html,body{
   .wrapper{
     @apply max-w-[500px] w-[80%] m-auto min-h-lvh
   }
+
 }

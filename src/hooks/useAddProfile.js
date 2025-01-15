@@ -6,7 +6,6 @@ import { AuthContext } from '../context/Auth.context.jsx';
 
 const useAddProfile = () => {
     let navigate= useNavigate();
-
     let { authUser } = useContext(AuthContext)
 
     const addChild = async (values) => {
