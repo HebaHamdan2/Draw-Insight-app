@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../Navbar/Navbar.jsx';
 import useAllDrawings from '../../hooks/useAllDrawings.js';
 import moment from 'moment/moment.js';
+import { Link } from 'react-router-dom';
 
 const Overview = () => {
   const { getAllDrawings, page, setPage, totalPages } = useAllDrawings();
@@ -70,13 +71,16 @@ const Overview = () => {
                 drawings.map((drawing, index) => (
                   <tr key={index} className="border-t">
                     <td className="p-4">
+                      <Link to={`/dashboard/profiles/${drawing.childId._id}/`}>
                       <img
                         src={drawing.childId?.profilePic?.secure_url || '/null.jpg'}
                         alt="Profile"
                         className="w-10 h-10 rounded-full"
                       />
+                      </Link>
+                     
                     </td>
-                    <td className="p-4">{drawing.childId?.name || 'Unknown'}</td>
+                    <Link to={`/dashboard/profiles/${drawing.childId._id}/`}>  <td className="p-4">{drawing.childId?.name || 'Unknown'}</td></Link>
                     <td className="p-4">
                       <img src={drawing.imageUrl?.secure_url} alt="Drawing" className="w-20" />
                     </td>

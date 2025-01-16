@@ -63,7 +63,7 @@ const PredictDrawing = () => {
               <textarea
                 name="drawing"
                 onClick={handleImageClick}
-                className="w-full text-center text-sm md:text-base font-normal text-mainColor resize-none cursor-pointer bg-transparent border border-[#4B5768] focus:outline-none rounded-md p-4 md:px-4 h-40"
+                className="w-full text-center  text-sm md:text-base font-normal text-mainColor resize-none cursor-pointer bg-transparent border border-[#4B5768] focus:outline-none rounded-md p-4 md:px-4 h-40"
                 readOnly
                 id="drawing"
                 value="Upload Your Child's Drawing to Get Insightful Results"
@@ -120,7 +120,7 @@ const PredictDrawing = () => {
                     ].map(({ label, value, color }) => (
                       <div key={label} className="flex flex-col items-center gap-2">
                         <div
-                          className={`radial-progress text-${color}`}
+                          className={`radial-progress bg-mainBg text-${color}`}
                           style={{
                             '--value': Math.round(parseFloat(value)),
                             '--size': '6rem',
