@@ -1,4 +1,3 @@
-import './App.css';
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { AuthContextProvider } from './context/Auth.context.jsx';
@@ -14,6 +13,7 @@ import ChildProfile from './components/ChildProfile/ChildProfile.jsx';
 import EditChildInfo from './components/EditChildInfo/EditChildInfo.jsx';
 import ChildProfileInfo from './components/ChildProfileInfo/ChildProfileInfo.jsx';
 import PridectDrawing from './components/PridectDrawing/PridectDrawing.jsx';
+import PageNotFound from './pages/PageNotFound/PageNotFound.jsx';
 
 const Signup = lazy(() => import('./pages/Signup/Signup.jsx'));
 const Login = lazy(() => import('./pages/Login/Login.jsx'));
@@ -54,6 +54,8 @@ function App() {
         { path: 'change-password', element: <ChangePassword /> },
       ],
     },
+   
+    { path: '*', element: <PageNotFound /> },
   ]);
 
   return (
