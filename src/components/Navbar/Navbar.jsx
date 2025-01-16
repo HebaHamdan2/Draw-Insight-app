@@ -3,26 +3,31 @@ import { Link } from 'react-router-dom';
 import useParentAccount from '../../hooks/useParentAccount.js';
 import { toast } from 'react-toastify';
 
-const Navbar = () => {
-  let {getAccountInfo}=useParentAccount();
-  let [parentImg,setParentImage]=useState('null');
-  let [parentName,setParentName]=useState('Unknown');
-  
+const Navbar = ({ setSearch }) => {
+  const { getAccountInfo } = useParentAccount();
+  const [parentImg, setParentImage] = useState('null');
+  const [parentName, setParentName] = useState('Unknown');
+
   useEffect(() => {
     const getInfo = async () => {
       try {
         const data = await getAccountInfo();
         if (data) {
-          setParentImage(data.parent.profilePic==='null'? 'null':data.parent.profilePic?.secure_url); 
-          setParentName(data.parent.username || 'Unknown'); 
+          setParentImage(data.parent.profilePic === 'null' ? 'null' : data.parent.profilePic?.secure_url);
+          setParentName(data.parent.username || 'Unknown');
         }
       } catch (error) {
-        toast.error('Failed to fetch account info:', error);
+        toast.error('Failed to fetch account info');
       }
     };
 
     getInfo();
   }, [getAccountInfo]);
+
+  const handleSearchChange = (event) => {
+    setSearch(event.target.value); // Correctly set the search value
+  };
+
   return (
     <div className="bg-[#EEEEEE] py-2 flex justify-start md:justify-end px-1 md:px-4">
       <ul className='flex gap-2 md:gap-6 justify-center items-center w-full max-w-md md:max-w-lg lg:max-w-xl'>
@@ -35,13 +40,14 @@ const Navbar = () => {
               type="text"
               className='border-none flex-grow focus:outline-none text-sm pl-2'
               placeholder='Search...'
+              onChange={handleSearchChange} // Use the handler function
             />
           </form>
         </li>
         <li>
           <Link to={'/dashboard/settings'} className='flex gap-2 items-center'>
             <h3 className='text-sm font-bold capitalize'>{parentName}</h3>
-            <img src={parentImg || '/null.jpg'}  className='w-8 h-8 rounded-[7px]' alt="parent" />
+            <img src={parentImg || '/null.jpg'} className='w-8 h-8 rounded-[7px]' alt="parent" />
           </Link>
         </li>
       </ul>

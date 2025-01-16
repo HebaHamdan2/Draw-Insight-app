@@ -1,56 +1,71 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../Navbar/Navbar.jsx';
 import useAllDrawings from '../../hooks/useAllDrawings.js';
-import moment from 'moment/moment.js';
+import moment from 'moment';
 import { Link } from 'react-router-dom';
 
 const Overview = () => {
   const { getAllDrawings, page, setPage, totalPages } = useAllDrawings();
-  const [drawings, setDrawings] = useState([]);
-  const [loading, setLoading] = useState(false); 
+  const [allDrawings, setAllDrawings] = useState([]);
+  const [filteredDrawings, setFilteredDrawings] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState('');
+
   const fetchDrawings = async (currentPage) => {
-    setLoading(true); 
-    const data = await getAllDrawings(currentPage);//call it once loading more clicked then the drawings array append
+    setLoading(true);
+    try {
+      const data = await getAllDrawings(currentPage);
+      if (data) {
+        const processedDrawings = data.drawings.map((drawing) => {
+          const predictions = drawing.prediction || {};
+          const maxPredictionKey = Object.keys(predictions).reduce((a, b) =>
+            predictions[a] > predictions[b] ? a : b
+          );
+          const maxPredictionValue = predictions[maxPredictionKey];
+          return {
+            ...drawing,
+            maxPredictionKey,
+            maxPredictionValue,
+          };
+        });
 
-    if (data) {
-      const processedDrawings = data.drawings.map((drawing) => {
-        const predictions = drawing.prediction || {};
-        const maxPredictionKey = Object.keys(predictions).reduce((a, b) =>//to display the main result "max percent" 
-          predictions[a] > predictions[b] ? a : b
-        );
-        const maxPredictionValue = predictions[maxPredictionKey];
-        return {
-          ...drawing,
-          maxPredictionKey,
-          maxPredictionValue,
-        };
-      });
-
-      // Append new drawings to the existing list
-      if(currentPage>1){
-        setDrawings((prevDrawings) => [...prevDrawings, ...processedDrawings]);
-
-      }else{
-        setDrawings([...processedDrawings])
+        if (currentPage > 1) {
+          setAllDrawings((prevDrawings) => [...prevDrawings, ...processedDrawings]);
+        } else {
+          setAllDrawings(processedDrawings);
+        }
       }
+    } catch (error) {
+      console.error('Failed to fetch drawings:', error);
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false); 
   };
 
   useEffect(() => {
-    fetchDrawings(page); //  initial drawings when the component mounts
-  }, []);
+    fetchDrawings(page);
+  }, [page]);
+
+  useEffect(() => {
+    const filterResults = () => {
+      const lowercasedSearch = search.toLowerCase();
+      const filtered = allDrawings.filter((drawing) =>
+        drawing.childId?.name?.toLowerCase().includes(lowercasedSearch)
+      );
+      setFilteredDrawings(filtered);
+    };
+    filterResults();
+  }, [search, allDrawings]);
 
   const handleLoadMore = () => {
     const nextPage = page + 1;
-    setPage(nextPage); 
-    fetchDrawings(nextPage); 
+    setPage(nextPage);
+    fetchDrawings(nextPage);
   };
 
   return (
     <>
-      <Navbar />
+      <Navbar setSearch={setSearch} />
       <div className="w-[95%] mx-auto pt-4 pb-10">
         <h2 className="text-lg md:text-xl text-center md:text-left cursor-pointer text-[#878787] capitalize pb-4">
           Recent Insights
@@ -67,20 +82,23 @@ const Overview = () => {
               </tr>
             </thead>
             <tbody className="bg-white text-[#666666] font-medium text-base">
-              {drawings.length > 0 ? (
-                drawings.map((drawing, index) => (
+              {filteredDrawings.length > 0 ? (
+                filteredDrawings.map((drawing, index) => (
                   <tr key={index} className="border-t">
                     <td className="p-4">
                       <Link to={`/dashboard/profiles/${drawing.childId._id}/`}>
-                      <img
-                        src={drawing.childId?.profilePic?.secure_url || '/null.jpg'}
-                        alt="Profile"
-                        className="w-10 h-10 rounded-full"
-                      />
+                        <img
+                          src={drawing.childId?.profilePic?.secure_url || '/null.jpg'}
+                          alt="Profile"
+                          className="w-10 h-10 rounded-full"
+                        />
                       </Link>
-                     
                     </td>
-                    <Link to={`/dashboard/profiles/${drawing.childId._id}/`}>  <td className="p-4">{drawing.childId?.name || 'Unknown'}</td></Link>
+                    <td className="p-4">
+                      <Link to={`/dashboard/profiles/${drawing.childId._id}/`}>
+                        {drawing.childId?.name || 'Unknown'}
+                      </Link>
+                    </td>
                     <td className="p-4">
                       <img src={drawing.imageUrl?.secure_url} alt="Drawing" className="w-20" />
                     </td>
@@ -88,10 +106,10 @@ const Overview = () => {
                       {drawing.maxPredictionKey}: {drawing.maxPredictionValue}
                     </td>
                     <td className="p-4">
-  {drawing.createdAt 
-    ? moment(drawing.createdAt).format('DD MMMM, YYYY') 
-    : 'Unknown'}
-</td>
+                      {drawing.createdAt
+                        ? moment(drawing.createdAt).format('DD MMMM, YYYY')
+                        : 'Unknown'}
+                    </td>
                   </tr>
                 ))
               ) : (
@@ -104,20 +122,19 @@ const Overview = () => {
             </tbody>
           </table>
         </div>
-
-        {/* Load More Button */}
-     {drawings.length>0? <div className="flex justify-center mt-4">
-          {page < totalPages && (
-            <button
-              onClick={handleLoadMore}
-              className="px-6 py-3 bg-mainColor text-white rounded-[4px] font-bold text-base"
-              disabled={loading} 
-            >
-              {loading ? 'Loading...' : 'Load More'}
-            </button>
-          )}
-        </div>:''}
-       
+        {filteredDrawings.length > 0 && (
+          <div className="flex justify-center mt-4">
+            {page < totalPages && (
+              <button
+                onClick={handleLoadMore}
+                className="px-6 py-3 bg-mainColor text-white rounded-[4px] font-bold text-base"
+                disabled={loading}
+              >
+                {loading ? 'Loading...' : 'Load More'}
+              </button>
+            )}
+          </div>
+        )}
       </div>
     </>
   );
