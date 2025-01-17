@@ -2,6 +2,7 @@ import { useFormik } from 'formik';
 import React from 'react'
 import * as Yup from 'yup';
 import useForgotPassword from '../../hooks/useForgotPassword.js';
+import Footer from '../../components/Footer/Footer.jsx';
 
 export const ResetPassword = () => {
   let {resetPassword}=useForgotPassword()
@@ -23,7 +24,8 @@ export const ResetPassword = () => {
     await resetPassword(values);
   }
   return (
-    <section className="bg-mainBg  py-[4%] ">
+  <>
+    <div className="bg-mainBg  py-[4%] ">
     <form className='wrapper flex flex-col justify-center items-center gap-6' onSubmit={formik.handleSubmit}>
     <div>
   <h1 className="flex flex-row text-base font-extrabold  italic md:text-2xl font-Poppins uppercase cursor-pointer text-mainColor">
@@ -79,6 +81,8 @@ export const ResetPassword = () => {
 
    </form>
    
-      </section>
+      </div>
+      <Footer/>
+  </>
   )
 }

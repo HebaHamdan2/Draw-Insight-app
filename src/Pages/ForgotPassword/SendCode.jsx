@@ -2,6 +2,7 @@ import { useFormik } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
 import useForgotPassword from '../../hooks/useForgotPassword.js';
+import Footer from '../../components/Footer/Footer.jsx';
 
 export default function SendCode() {
   const { sendCode } = useForgotPassword();
@@ -19,7 +20,8 @@ export default function SendCode() {
   });
 
   return (
-    <section className="bg-mainBg py-[4%]">
+   <>
+    <div className="bg-mainBg py-[4%]">
       <form className='wrapper flex flex-col justify-center items-center gap-4' onSubmit={formik.handleSubmit}>
         <div>
           <h1 className="flex flex-row text-base font-extrabold italic md:text-2xl font-Poppins uppercase cursor-pointer text-mainColor">
@@ -47,6 +49,8 @@ export default function SendCode() {
         <button type="submit" className='bg-mainColor text-white w-full rounded-md px-30 py-3 font-semibold'>Send Code</button>
         <a href="../login" className='text-[#878787] text-base font-semibold'>Back to login</a>
       </form>
-    </section>
+    </div>
+    <Footer/>
+   </>
   );
 }

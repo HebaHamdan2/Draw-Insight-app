@@ -2,6 +2,7 @@ import { useFormik } from 'formik'
 import React from 'react'
 import * as Yup from 'yup';
 import useSignup from '../../hooks/useSignup.js';
+import Footer from '../../components/Footer/Footer.jsx';
 
 const Signup = () => {
   let signup=useSignup()
@@ -29,7 +30,8 @@ const Signup = () => {
     await signup(values);
   }
   return (
-   <section className="bg-mainBg  py-[4%] ">
+  <>
+   <div className="bg-mainBg  py-[4%] ">
  <form className='wrapper flex flex-col justify-center items-center gap-6'onSubmit={formik.handleSubmit}>
  <div>
   <h1 className="flex flex-row text-base italic font-extrabold md:text-2xl font-Poppins uppercase cursor-pointer text-mainColor">
@@ -120,7 +122,9 @@ const Signup = () => {
         </p>
 </form>
 
-   </section>
+   </div>
+   <Footer/>
+  </>
   )
 }
 
