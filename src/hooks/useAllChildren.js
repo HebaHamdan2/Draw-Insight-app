@@ -17,7 +17,7 @@ try{
 
       if (response.data?.message === 'success') {
         const data = response.data;
-        setTotalPages(data.page);
+        setTotalPages(Math.ceil(data.total / 6));
         return data; 
       }
 

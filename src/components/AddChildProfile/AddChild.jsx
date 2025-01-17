@@ -15,25 +15,25 @@ const AddChild = () => {
       name: '',
       dateOfBirth: '',
       gender: '',
-      image: null,
+      image: ''
     },
     validationSchema: Yup.object({
       name: Yup.string()
         .required("Child's name is required")
         .min(3, "Name must be at least 3 characters")
         .max(20, "Name must be at most 20 characters"),
-        dateOfBirth: Yup.date()
+      dateOfBirth: Yup.date()
         .required("Date of Birth is required")
         .max(new Date(), "Date of Birth cannot be in the future"),
       gender: Yup.string().required("Gender is required"),
-      image: Yup.mixed().required("Image is required"), 
+      image: Yup.mixed().nullable(), // Image is optional
     }),
     onSubmit: async (values, { resetForm }) => {
       try {
-        await addChild(values);
+        await addChild(values); // Sending the form data with image
         resetForm();
-        setImage(null); // Reset the image state
-        setImagePreview(null); // Reset the image preview
+        setImage(null); // Reset image state
+        setImagePreview(null); // Reset image preview
       } catch (error) {
         toast.error("Error adding child");
       }
@@ -66,7 +66,7 @@ const AddChild = () => {
     >
       <div>
         <img
-          src={imagePreview || '/null.png'} // Use preview if available
+          src={imagePreview || '/null.png'} // Show image preview or default if not provided
           alt="profile-pic"
           className="size-[95px] md:size-[180px] rounded-full block cursor-pointer"
           onClick={handleImageClick}

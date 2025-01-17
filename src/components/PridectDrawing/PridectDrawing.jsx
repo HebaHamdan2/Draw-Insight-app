@@ -12,9 +12,8 @@ const PredictDrawing = () => {
   const [happy, setHappy] = useState('');
   const [sad, setSad] = useState('');
   const [isResult, setIsResult] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);  // To show loading state
+  const [isLoading, setIsLoading] = useState(false);
 
-  // Create a reference to the results section
   const resultsRef = useRef(null);
 
   const handleImageClick = () => {
@@ -30,14 +29,14 @@ const PredictDrawing = () => {
   };
 
   const handlePrediction = async () => {
-    setIsLoading(true);  // Set loading to true
+    setIsLoading(true);
     const predictions = await predict(image);
     setAnger(predictions['Anger and aggression']);
     setAnxiety(predictions['Anxiety']);
     setHappy(predictions['Happy']);
     setSad(predictions['Sad']);
     setIsResult(true);
-    setIsLoading(false);  // Set loading to false once results are received
+    setIsLoading(false);
   };
 
   const handleSave = async () => {
@@ -47,12 +46,18 @@ const PredictDrawing = () => {
     setIsResult(false);
   };
 
-  // Use useEffect to scroll when isResult is true
   useEffect(() => {
     if (isResult && resultsRef.current) {
       resultsRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [isResult]);  // This will trigger every time isResult changes
+  }, [isResult]);
+
+  const emotionColors = {
+    Happy: 'text-yellow-300',
+    Sad: 'text-blue-400',
+    Anger: 'text-red-500',
+    Anxiety: 'text-purple-400',
+  };
 
   return (
     <div className="p-6 bg-white rounded-lg shadow-md w-full max-w-6xl mx-auto mt-6">
@@ -63,7 +68,7 @@ const PredictDrawing = () => {
               <textarea
                 name="drawing"
                 onClick={handleImageClick}
-                className="w-full text-center  text-sm md:text-base font-normal text-mainColor resize-none cursor-pointer bg-transparent border border-[#4B5768] focus:outline-none rounded-md p-4 md:px-4 h-40"
+                className="w-full text-center text-sm md:text-base font-normal text-mainColor resize-none cursor-pointer bg-transparent border border-[#4B5768] focus:outline-none rounded-md p-4 md:px-4 h-40"
                 readOnly
                 id="drawing"
                 value="Upload Your Child's Drawing to Get Insightful Results"
@@ -113,14 +118,14 @@ const PredictDrawing = () => {
                     className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-10"
                   >
                     {[
-                      { label: 'Happy', value: happy, color: 'yellow-300' },
-                      { label: 'Sad', value: sad, color: 'blue-400' },
-                      { label: 'Anger', value: anger, color: 'red-500' },
-                      { label: 'Anxiety', value: anxiety, color: 'purple-400' },
-                    ].map(({ label, value, color }) => (
+                      { label: 'Happy', value: happy },
+                      { label: 'Sad', value: sad },
+                      { label: 'Anger', value: anger },
+                      { label: 'Anxiety', value: anxiety },
+                    ].map(({ label, value }) => (
                       <div key={label} className="flex flex-col items-center gap-2">
                         <div
-                          className={`radial-progress bg-mainBg text-${color}`}
+                          className={`radial-progress bg-mainBg ${emotionColors[label]}`}
                           style={{
                             '--value': Math.round(parseFloat(value)),
                             '--size': '6rem',

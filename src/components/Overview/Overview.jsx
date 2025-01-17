@@ -3,18 +3,17 @@ import Navbar from '../Navbar/Navbar.jsx';
 import useAllDrawings from '../../hooks/useAllDrawings.js';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Overview = () => {
   const { getAllDrawings, page, setPage, totalPages } = useAllDrawings();
-  const [allDrawings, setAllDrawings] = useState([]);
-  const [filteredDrawings, setFilteredDrawings] = useState([]);
+  const [drawings, setDrawings] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [search, setSearch] = useState('');
 
   const fetchDrawings = async (currentPage) => {
     setLoading(true);
     try {
-      const data = await getAllDrawings(currentPage);
+      const data = await getAllDrawings(currentPage); 
       if (data) {
         const processedDrawings = data.drawings.map((drawing) => {
           const predictions = drawing.prediction || {};
@@ -28,35 +27,25 @@ const Overview = () => {
             maxPredictionValue,
           };
         });
-
-        if (currentPage > 1) {
-          setAllDrawings((prevDrawings) => [...prevDrawings, ...processedDrawings]);
-        } else {
-          setAllDrawings(processedDrawings);
-        }
+  
+        setDrawings((prevDrawings) => 
+          currentPage === 1 ? processedDrawings : [...prevDrawings, ...processedDrawings.filter(newDrawing => 
+            !prevDrawings.some(existingDrawing => existingDrawing._id === newDrawing._id)
+          )]
+        );
       }
     } catch (error) {
-      console.error('Failed to fetch drawings:', error);
+      toast.error('Failed to fetch drawings:', error);
     } finally {
       setLoading(false);
     }
   };
-
+  
+  
   useEffect(() => {
     fetchDrawings(page);
-  }, [page]);
-
-  useEffect(() => {
-    const filterResults = () => {
-      const lowercasedSearch = search.toLowerCase();
-      const filtered = allDrawings.filter((drawing) =>
-        drawing.childId?.name?.toLowerCase().includes(lowercasedSearch)
-      );
-      setFilteredDrawings(filtered);
-    };
-    filterResults();
-  }, [search, allDrawings]);
-
+  }, [page]); // Triggers on page change
+  
   const handleLoadMore = () => {
     const nextPage = page + 1;
     setPage(nextPage);
@@ -65,7 +54,7 @@ const Overview = () => {
 
   return (
     <>
-      <Navbar setSearch={setSearch} />
+      <Navbar />
       <div className="w-[95%] mx-auto pt-4 pb-10">
         <h2 className="text-lg md:text-xl text-center md:text-left cursor-pointer text-[#878787] capitalize pb-4">
           Recent Insights
@@ -82,8 +71,8 @@ const Overview = () => {
               </tr>
             </thead>
             <tbody className="bg-white text-[#666666] font-medium text-base">
-              {filteredDrawings.length > 0 ? (
-                filteredDrawings.map((drawing, index) => (
+              {drawings.length > 0 ? (
+                drawings.map((drawing, index) => (
                   <tr key={index} className="border-t">
                     <td className="p-4">
                       <Link to={`/dashboard/profiles/${drawing.childId._id}/`}>
@@ -122,9 +111,9 @@ const Overview = () => {
             </tbody>
           </table>
         </div>
-        {filteredDrawings.length > 0 && (
+        {drawings.length > 0 && (
           <div className="flex justify-center mt-4">
-            {page < totalPages && (
+            {page < totalPages ? (
               <button
                 onClick={handleLoadMore}
                 className="px-6 py-3 bg-mainColor text-white rounded-[4px] font-bold text-base"
@@ -132,7 +121,7 @@ const Overview = () => {
               >
                 {loading ? 'Loading...' : 'Load More'}
               </button>
-            )}
+            ):""}
           </div>
         )}
       </div>

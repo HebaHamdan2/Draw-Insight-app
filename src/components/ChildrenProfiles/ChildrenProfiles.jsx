@@ -44,7 +44,7 @@ const ChildrenProfiles = () => {
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6 ">
     
   {children.map((child,index)=>(
-     <ChildCard name={child.name} gender={child.gender} profilePic={child.profilePic.secure_url} key={index} childId={child._id} />
+     <ChildCard name={child.name} gender={child.gender} profilePic={child.profilePic?.secure_url||'/null.jpg'} key={index} childId={child._id} />
     ))}
 
  </div> 

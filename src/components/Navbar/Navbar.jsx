@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import useParentAccount from '../../hooks/useParentAccount.js';
 import { toast } from 'react-toastify';
 
-const Navbar = ({ setSearch }) => {
+const Navbar = () => {
   const { getAccountInfo } = useParentAccount();
   const [parentImg, setParentImage] = useState('null');
   const [parentName, setParentName] = useState('Unknown');
@@ -24,34 +24,19 @@ const Navbar = ({ setSearch }) => {
     getInfo();
   }, [getAccountInfo]);
 
-  const handleSearchChange = (event) => {
-    setSearch(event.target.value); // Correctly set the search value
-  };
 
   return (
-    <div className="bg-[#EEEEEE] py-2 flex justify-start md:justify-end px-1 md:px-4">
-      <ul className='flex gap-2 md:gap-6 justify-center items-center w-full max-w-md md:max-w-lg lg:max-w-xl'>
-        <li className="flex-grow">
-          <form className='flex items-center bg-white py-2 px-2 md:px-4 rounded-full w-full'>
-            <button type='submit' className='flex items-center justify-center pr-2'>
-              <img src="/search.svg" className='w-4 h-4' alt="search" />
-            </button>
-            <input
-              type="text"
-              className='border-none flex-grow focus:outline-none text-sm pl-2'
-              placeholder='Search...'
-              onChange={handleSearchChange} // Use the handler function
-            />
-          </form>
-        </li>
-        <li>
-          <Link to={'/dashboard/settings'} className='flex gap-2 items-center'>
-            <h3 className='text-sm font-bold capitalize'>{parentName}</h3>
-            <img src={parentImg || '/null.jpg'} className='w-8 h-8 rounded-[7px]' alt="parent" />
-          </Link>
-        </li>
-      </ul>
-    </div>
+    <div className="bg-[#EEEEEE] py-2 flex justify-start md:justify-end px-2 md:px-4">
+    <ul className="flex gap-2 md:gap-6 justify-center items-center w-full max-w-md md:max-w-lg lg:max-w-xl">
+      <li className="flex-grow text-center md:text-right">
+        <Link to={'/dashboard/settings'} className="flex gap-2 items-center justify-center md:justify-end">
+          <h3 className="text-sm font-bold capitalize">{parentName}</h3>
+          <img src={parentImg || '/null.jpg'} className="w-8 h-8 rounded-[7px]" alt="parent" />
+        </Link>
+      </li>
+    </ul>
+  </div>
+  
   );
 };
 

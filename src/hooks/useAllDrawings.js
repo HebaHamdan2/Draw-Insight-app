@@ -18,7 +18,7 @@ const useAllDrawings = () => {
 
       if (response.data?.message === 'success') {
         const data = response.data;
-        setTotalPages(data.totalPages);
+        setTotalPages(Math.ceil(data.total / 4));
         return data; 
       }
     } catch (err) {
