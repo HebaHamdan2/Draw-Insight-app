@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+# Overview 
+**DRAW-INSIGHT** is a comprehensive web application designed for parents to manage their children's profiles and gain insights into their psychological health through the analysis of their drawings. The app allows parents to create profiles for their children, which include details such as names, genders, ages, and records of the latest insights (drawings predictions or analysis details). These insights serve as psychological records that help parents monitor their children’s emotional well-being.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The core of DrawInsight is a predictive model based on YOLOv8-class classification, which has been trained to achieve an accuracy of **95.99%**. The training and model details are documented in a [previous repository](https://github.com/HebaHamdan2/Psychological-Classification-of-Children-Drawings) with the Flask API deployed [here](https://github.com/HebaHamdan2/ChildDrawingClassifier-api). This repository represents the full application, including a [backend](https://github.com/HebaHamdan2/ChildDrawingsSpeak-backend) built with Node.js and Express.js, managing user authentication, children profiles, and storing records in a MongoDB database.
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/3663cdd8-527b-48b3-9c5e-6740553219de" alt="Image" width="300"/>
+</p>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Features
+- **User Authentication**: Includes sign-up, login, and password recovery features.
+- **Dashboard**: A parent-friendly dashboard showcasing recent insights with pagination and a "Load More" button for seamless navigation.
+- **Children Profiles**: Parents can manage profiles by adding, editing, or deleting children’s information.
+- **Drawing Analysis**: Upload and predict children’s drawings with results displayed as radial percentage circles for emotions like happiness, sadness, anxiety, and anger. The circles are color-coded based on **psychological classifications** (e.g., happy is yellow, sad is blue).
+- **Save Predictions**: Parents can save the analysis results to their child’s profile for future reference.
+- **Account Management**: Options for parents to edit their account details, change passwords, or delete their accounts.
+- **User Experience Enhancements**: Includes skeleton loaders for a smooth user experience and a "Page Not Found" component to handle erroneous paths. The app is fully responsive, ensuring optimal performance across different screen sizes.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Technology Stack
+- **React**: A JavaScript library for building user interfaces.
+- **React Router DOM**: Handles routing within the app.
+- **Formik & Yup**: Used for form handling and validation.
+- **Axios**: For making HTTP requests.
+- **Framer Motion**: Provides animations for a more dynamic user experience.
+- **React Toastify**: Displays toast notifications.
+- **SweetAlert2**: Adds beautiful alerts and modals.
+- **Moment.js**: Parses, validates, manipulates, and formats dates.
+- **Tailwind CSS**: A utility-first CSS framework for styling.
+- **DaisyUI**: A component library built on Tailwind CSS, used for creating elements like radial progress and skeleton loaders.
+- **Font Awesome**: Provides icons for enhancing the UI.
+This stack enables a responsive, user-friendly interface with clear feedback, form handling, and visually appealing components.
 
-### `npm test`
+# Journey and Purpose
+Building **DRAW-INSIGHT** has been a fulfilling journey filled with learning and growth. The app reflects a deep passion for creating meaningful solutions that can have real-world impact, particularly in helping parents understand and support their children's emotional health. In a world where many children face post-war traumas, this app provides a valuable tool for them to express their feelings, even when they may not be able to articulate them verbally. It is a **dream realized, turning ideas into a functional app** that can make a difference in the lives of families.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Demo
+Check out the live demo of the application:
+[Demo Link]()
+ 
+# Contributing
+Contributions are welcome to improve features and impact. Feel free to fork, submit pull requests, or suggest ideas!
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
