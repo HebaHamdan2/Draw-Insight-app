@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import useForgotPassword from '../../hooks/useForgotPassword.js';
 import Footer from '../../components/Footer/Footer.jsx';
 
-export const ResetPassword = () => {
+export  default function  ResetPassword () {
   let {resetPassword}=useForgotPassword()
 
   const schema = Yup.object({
