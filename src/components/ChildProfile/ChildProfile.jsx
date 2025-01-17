@@ -23,7 +23,7 @@ const ChildProfile = () => {
           <div className="flex justify-center mt-8">
             <img
               className="rounded-full w-24 h-24 z-10"
-              src={childInfo.profilePic === null ? '/null.jpg' : childInfo.profilePic?.secure_url}
+              src={childInfo?.profilePic ?  childInfo.profilePic?.secure_url:'/null.jpg' }
               alt="profile"
             />
             <button

@@ -74,7 +74,7 @@ const deleteleteDrawing=async(childId,drawingId)=>{
       });
 
       if (response.data?.message === "Drawing deleted successfully") {
-        navigate("../dashboard/profiles")
+        navigate("../")
         Swal.fire('Deleted!', 'Child Drawing has been deleted.', 'success');
       }
     } catch (err) {
