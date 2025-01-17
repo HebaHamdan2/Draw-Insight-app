@@ -13,7 +13,7 @@ const Overview = () => {
   const fetchDrawings = async (currentPage) => {
     setLoading(true);
     try {
-      const data = await getAllDrawings(currentPage); 
+      const data = await getAllDrawings(currentPage);
       if (data) {
         const processedDrawings = data.drawings.map((drawing) => {
           const predictions = drawing.prediction || {};
@@ -27,11 +27,19 @@ const Overview = () => {
             maxPredictionValue,
           };
         });
-  
-        setDrawings((prevDrawings) => 
-          currentPage === 1 ? processedDrawings : [...prevDrawings, ...processedDrawings.filter(newDrawing => 
-            !prevDrawings.some(existingDrawing => existingDrawing._id === newDrawing._id)
-          )]
+
+        setDrawings((prevDrawings) =>
+          currentPage === 1
+            ? processedDrawings
+            : [
+                ...prevDrawings,
+                ...processedDrawings.filter(
+                  (newDrawing) =>
+                    !prevDrawings.some(
+                      (existingDrawing) => existingDrawing._id === newDrawing._id
+                    )
+                ),
+              ]
         );
       }
     } catch (error) {
@@ -40,12 +48,11 @@ const Overview = () => {
       setLoading(false);
     }
   };
-  
-  
+
   useEffect(() => {
     fetchDrawings(page);
-  }, [page]); // Triggers on page change
-  
+  }, [page]);
+
   const handleLoadMore = () => {
     const nextPage = page + 1;
     setPage(nextPage);
@@ -71,7 +78,20 @@ const Overview = () => {
               </tr>
             </thead>
             <tbody className="bg-white text-[#666666] font-medium text-base">
-              {drawings.length > 0 ? (
+              {loading ? (
+                // Skeleton Loader for Table Rows
+                <tr>
+                  <td colSpan="4" className="p-4">
+                    <div className="flex gap-4">
+                      <div className="w-10 h-10 bg-gray-300 rounded-full animate-pulse"></div>
+                      <div className="w-1/2 h-4 bg-gray-300 rounded animate-pulse"></div>
+                      <div className="w-1/3 h-4 bg-gray-300 rounded animate-pulse"></div>
+                      <div className="w-1/4 h-4 bg-gray-300 rounded animate-pulse"></div>
+                      <div className="w-1/4 h-4 bg-gray-300 rounded animate-pulse"></div>
+                    </div>
+                  </td>
+                </tr>
+              ) : drawings.length > 0 ? (
                 drawings.map((drawing, index) => (
                   <tr key={index} className="border-t">
                     <td className="p-4">
@@ -89,7 +109,11 @@ const Overview = () => {
                       </Link>
                     </td>
                     <td className="p-4">
-                      <img src={drawing.imageUrl?.secure_url} alt="Drawing" className="w-20" />
+                      <img
+                        src={drawing.imageUrl?.secure_url}
+                        alt="Drawing"
+                        className="w-20"
+                      />
                     </td>
                     <td className="p-4">
                       {drawing.maxPredictionKey}: {drawing.maxPredictionValue}
@@ -121,7 +145,9 @@ const Overview = () => {
               >
                 {loading ? 'Loading...' : 'Load More'}
               </button>
-            ):""}
+            ) : (
+              ""
+            )}
           </div>
         )}
       </div>
